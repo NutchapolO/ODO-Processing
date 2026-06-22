@@ -138,6 +138,9 @@ main{max-width:960px;margin:0 auto;padding:28px 20px}
       <button class="ptab" onclick="switchProvider('openrouter')" id="tab-openrouter">
         <span class="ptab-icon">🔀</span>OpenRouter<br><span style="font-size:9px;color:#66bb6a">free models</span>
       </button>
+      <button class="ptab" onclick="switchProvider('9arm')" id="tab-9arm">
+        <span class="ptab-icon">🟣</span>9ARM-AI
+      </button>
     </div>
 
     <!-- OCR (No AI) -->
@@ -228,6 +231,17 @@ main{max-width:960px;margin:0 auto;padding:28px 20px}
       </div>
     </div>
 
+    <!-- 9ARM-AI -->
+    <div class="provider-panel" id="panel-9arm">
+      <div class="field-label">API Key <a href="https://gateway.9arm.co" target="_blank" style="font-size:10px;margin-left:6px">Get key →</a></div>
+      <input class="api-input" id="key-9arm" type="password" placeholder="sk-9arm-…"/>
+      <div class="field-label">Model</div>
+      <input class="api-input" id="model-9arm" type="text" value="qwen3.6-35b-a3b" placeholder="model name" style="font-family:monospace;font-size:12px"/>
+      <div class="field-label">Endpoint</div>
+      <input class="api-input" id="endpoint-9arm" type="text" value="https://gateway.9arm.co/v1" placeholder="https://gateway.9arm.co/v1" style="font-family:monospace;font-size:12px"/>
+      <p class="hint green">✓ OpenAI-compatible endpoint · Use any compatible model</p>
+    </div>
+
     <button class="btn-primary" onclick="saveSettings()">✓ Save & Start →</button>
   </div>
 </div>
@@ -305,6 +319,7 @@ const PROVIDERS = {
   openai:     { name:"OpenAI",      icon:"🟢" },
   gemini:     { name:"Gemini",      icon:"✨" },
   openrouter: { name:"OpenRouter",  icon:"🔀" },
+  "9arm":     { name:"9ARM-AI",     icon:"🟣" },
 };
 
 let currentProvider = localStorage.getItem("odo_provider") || "claude";
@@ -615,6 +630,23 @@ async function extractODO(file) {
       });
       data = await response.json();
       if (data.error) throw new Error("OpenRouter: " + data.error.message);
+      text = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "";
+
+    } else if (currentProvider === "9arm") {
+      const endpoint = (localStorage.getItem("odo_endpoint_9arm") || "https://gateway.9arm.co/v1").replace(/\/+$/, "");
+      response = await fetch(endpoint + "/chat/completions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + apiKey },
+        body: JSON.stringify({
+          model: model, max_tokens: 150, temperature: 0,
+          messages: [{ role: "user", content: [
+            { type: "image_url", image_url: { url: "data:" + mt + ";base64," + b64 } },
+            { type: "text", text: PROMPT }
+          ]}]
+        })
+      });
+      data = await response.json();
+      if (data.error) throw new Error("9ARM-AI: " + (data.error.message || JSON.stringify(data.error)));
       text = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "";
     }
 
