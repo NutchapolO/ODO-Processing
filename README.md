@@ -27,7 +27,7 @@ To get a key:
 - Claude: https://console.anthropic.com
 - OpenAI: https://platform.openai.com/api-keys
 - Gemini: https://aistudio.google.com/app/apikey
-- 9ARM (AI Passport): Requires a paid YouTube Membership at the **เลี้ยงค่า Token** level or higher on [@9arm](https://www.youtube.com/@9arm). Steps to unlock:
+- 9ARM (AI Passport): Requires a paid YouTube Membership at the **เลี้ยงค่า Token** level or higher on [@9arm](https://www.youtube.com/@9arm.). Steps to unlock:
   1. Join YouTube Membership at **เลี้ยงค่า Token** tier or above (เลี้ยงกาแฟ / เลี้ยงข้าว tiers do not qualify).
   2. Open Discord → User Settings → **Connections** → select the YouTube logo (expand with `>` if not visible).
   3. Log in with Google and choose the YouTube account that holds the membership.
