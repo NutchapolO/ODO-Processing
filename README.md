@@ -21,13 +21,18 @@ On first launch, a settings modal appears. Pick one of the four supported provid
 | **Claude** (Anthropic) | Paid | Best accuracy; requires `sk-ant-...` key |
 | **OpenAI** | Paid | Requires `sk-proj-...` key |
 | **Gemini** (Google) | Free tier | 1,500 req/day on `gemini-2.0-flash`; must run the file **locally** (see CORS note below) |
-| **9ARM-AI** | Free (community) | Subscribe to [@9arm on YouTube](https://www.youtube.com/@9arm) and send a screenshot to the admin to receive a free API key ("เลี้ยงค่า Token") |
+| **9ARM-AI** | YouTube Membership | Requires YouTube Member at **เลี้ยงค่า Token** tier or above; connect YouTube to Discord to unlock the private channel and receive an API key |
 
 To get a key:
 - Claude: https://console.anthropic.com
 - OpenAI: https://platform.openai.com/api-keys
 - Gemini: https://aistudio.google.com/app/apikey
-- 9ARM: Subscribe to https://www.youtube.com/@9arm, screenshot your subscription, and send it to the admin to get a free key (เลี้ยงค่า Token)
+- 9ARM (AI Passport): Requires a paid YouTube Membership at the **เลี้ยงค่า Token** level or higher on [@9arm](https://www.youtube.com/@9arm). Steps to unlock:
+  1. Join YouTube Membership at **เลี้ยงค่า Token** tier or above (เลี้ยงกาแฟ / เลี้ยงข้าว tiers do not qualify).
+  2. Open Discord → User Settings → **Connections** → select the YouTube logo (expand with `>` if not visible).
+  3. Log in with Google and choose the YouTube account that holds the membership.
+  4. Once verified you will see **Sub enabled server** and gain access to the private channel to collect your API key.
+  - Note: after joining or upgrading, allow 1–2 hours for YouTube to sync with Discord.
 
 Click **Save & Start** to continue. You can change the provider at any time by clicking the model pill in the top-right corner of the header.
 
